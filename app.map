@@ -1,0 +1,6 @@
+function loadMapInformation(locationMapInfo){							
+$('#map').jmap('init',{mapCenter:[19.38685, 73.77917],mapType:'hybrid',mapEnableType:true,mapZoom:11,mapEnableScrollZoom:true,mapEnableSmoothZoom:true});	
+$.each(locationMapInfo.places, function(i, location){$("<li><a href='javascript:void(0)'>"+location.name+"</a></li>").appendTo("#links");});
+$('#links a').each(function(n){$('#map').jmap('addMarker',{pointLatLng:[locationMapInfo.places[n].lat,locationMapInfo.places[n].long],pointHTML:"Place :"+locationMapInfo.places[n].name+"<br/>"+"Elevation :"+locationMapInfo.places[n].elevationFeet+" Feet ("+locationMapInfo.places[n].elevationMeter+" Meters)<br/>"+"Contributed By :"+locationMapInfo.places[n].submittedBy+"<br/>"});	  	
+$(this).bind('click',function(event) {$('#map').jmap("moveTo",{mapCenter: [locationMapInfo.places[n].lat,locationMapInfo.places[n].long],centerMethod: "pan"});})});					
+}
